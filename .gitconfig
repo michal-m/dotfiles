@@ -1,0 +1,22 @@
+[user]
+    name = MichalM
+    email = michal.j.musial@gmail.com
+
+[alias]
+    br = branch
+    co = checkout
+    ci = commit
+    st = status
+    ls = ls-files
+    
+    log-short = log --oneline --graph
+    ignore-on-commit = update-index --assume-unchanged
+    stop-ignore-on-commit = update-index --no-assume-unchanged
+[color]
+    ui = true
+[core]
+    autocrlf = false
+    filemode = false
+    quotepath = false
+[format]
+    pretty = oneline

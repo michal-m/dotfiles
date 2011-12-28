@@ -1,0 +1,12 @@
+BoldAsFont=no
+Transparency=medium
+CursorType=block
+Font=DejaVu Sans Mono
+AllowBlinking=yes
+BackspaceSendsBS=no
+RightClickAction=paste
+Columns=155
+Rows=84
+BellSound=yes
+BellTaskbar=no
+FontHeight=8
