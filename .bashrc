@@ -1,52 +1,50 @@
-unset TMP
-unset TEMP
+# # --------------------------------------------------------------------
+# # path
+# # --------------------------------------------------------------------
+if [ -x /usr/libexec/path_helper ]; then
+        eval `/usr/libexec/path_helper -s`
+fi
+export PATH=$PATH:$HOME/bin:.
 
-# Don't wait for job termination notification
-set -o notify
+# # --------------------------------------------------------------------
+# # globals
+# # --------------------------------------------------------------------
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export EDITOR='vim'
+export PAGER='less'
 
-# Ignore some controlling instructions
-# HISTIGNORE is a colon-delimited list of patterns which should be excluded.
-# The '&' is a special pattern which suppresses duplicate entries.
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
+# # --------------------------------------------------------------------
+# # prompt setup & colours
+# # --------------------------------------------------------------------
+PS1="[\[\e]0;\w\a\]\[\e[32m\]\u \[\e[33m\]\w\[\e[0m\]]\$ "
 
-# Whenever displaying the prompt, write the previous line to disk
-# export PROMPT_COMMAND="history -a"
+ANG='en_GB.UTF-8'
+LC_ALL='en_GB.UTF-8'
+LC_CTYPE=C
+TZ="Europe/Warsaw"
 
-export HISTFILESIZE=1000
-
-
-# Aliases
-alias bash-i='bash --login -i'
-
-alias less='less -r'
-alias rm='rm -i'
-alias whence='type -a'
-alias ls='ls -F --color=tty'
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias cp='cp -i'
-alias mv='mv -i'
-alias c:='cd /cygdrive/c'
-alias grep='grep --color'
-alias vi='vim'
-alias cls='clear'
-
-alias mysql='mysql -h 127.0.0.1'
-alias scr='screen'
-
-# SSH shortcuts
+# # --------------------------------------------------------------------
+# # aliases
+# # --------------------------------------------------------------------
 alias blitz='ssh update@itunix.blitzgamesstudios.com'
+alias scr='screen'
+alias synergy_client='~/bin/synergyc -name mmusial-mcb 10.0.0.100'
+#alias synergy_client='~/bin/synergyc -name mmusial-mcb 192.169.1.100'
 
-# Make bash 8bit clean
-set meta-flag On
-set input-meta On
-set output-meta On
-set convert-meta Off
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ll='ls -al'
+alias ql="qlmanage -p 2>/dev/null" # preview a file using QuickLook
+alias wget='curl -C - -O'
 
-PS1="[\[\e]0;\w\a\]\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]]\$ "
+# # --------------------------------------------------------------------
+# # functions
+# # --------------------------------------------------------------------
+man_p () {
+    man -t "${1}" | open -f -a /Applications/Preview.app
+}
 
+man_mate () {
+  MANWIDTH=160 MANPAGER='col -bx' man $@ | mate
+}
